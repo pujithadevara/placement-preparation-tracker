@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Preparation Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- LANDING PAGE -->
+<div id="landing" class="landing">
+    <nav class="landing-nav">
+        <div class="brand">P<span>PT.</span></div>
+        <div>
+            <button class="btn btn-outline" onclick="showAuth('login')">Login</button>
+            <button class="btn btn-primary" onclick="showAuth('signup')">Get Started</button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="eyebrow">Learn from seniors, get placed faster</div>
+        <h1>Placement Preparation <span>Tracker</span></h1>
+        <p>
+            Real experiences from seniors can make a difference in your placement journey.
+            Discover interview stories, understand company expectations, and learn what
+            skills to develop and when to start. Nobody should have to begin late.
+        </p>
+        <div class="hero-actions">
+            <button class="btn btn-primary" onclick="showAuth('login','stories')">Explore Stories →</button>
+            <button class="btn btn-outline" onclick="showAuth('login','share')">Share Experience</button>
+        </div>
+        <div class="stats-grid" id="homeStats"></div>
+    </section>
+
+    <section class="landing-section">
+        <div class="section-heading">
+            <span class="eyebrow">OUR REACH</span>
+            <h2>Companies Covered</h2>
+            <p>Explore placement experiences from leading companies.</p>
+        </div>
+        <div class="company-grid" id="companyStrip"></div>
+    </section>
+
+    <section class="landing-section how-section">
+        <div class="section-heading">
+            <span class="eyebrow">SIMPLE PROCESS</span>
+            <h2>How It Works</h2>
+        </div>
+        <div class="how-grid">
+            <article class="how-card">
+                <span class="step-number">01</span>
+                <h3>Seniors Share</h3>
+                <p>Seniors share their real placement experiences, interview rounds, preparation methods and lessons.</p>
+            </article>
+            <article class="how-card">
+                <span class="step-number">02</span>
+                <h3>Juniors Explore</h3>
+                <p>Juniors explore company experiences and understand the skills and topics required.</p>
+            </article>
+            <article class="how-card">
+                <span class="step-number">03</span>
+                <h3>Start Preparing Early</h3>
+                <p>Use practical guidance to plan your learning journey and prepare with confidence.</p>
+            </article>
+        </div>
+    </section>
+
+    <footer>© 2026 Placement Preparation Tracker · Built for students, inspired by seniors.</footer>
+</div>
+
+<!-- AUTHENTICATION -->
+<div id="authScreen" class="auth-screen hidden">
+    <div class="auth-card">
+        <button class="back-button" onclick="backToLanding()">← Back to home</button>
+        <div class="brand">P<span>PT.</span></div>
+        <div id="authContent"></div>
+    </div>
+</div>
+
+<!-- MAIN APPLICATION -->
+<div id="app" class="app hidden">
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">P<span>PT.</span></div>
+        <div class="sidebar-label">MENU</div>
+        <nav id="sidebarNav">
+            <button class="nav-item active" data-page="dashboard" onclick="navigate('dashboard')">▦ <span>Dashboard</span></button>
+            <button class="nav-item" data-page="placed" onclick="navigate('placed')">✓ <span>Placed Seniors</span></button>
+            <button class="nav-item" data-page="unplaced" onclick="navigate('unplaced')">◇ <span>Unplaced Seniors</span></button>
+            <button class="nav-item" data-page="interviews" onclick="navigate('interviews')">▤ <span>Interview Experiences</span></button>
+            <button class="nav-item" data-page="resume" onclick="navigate('resume')">▧ <span>Resume Planning</span></button>
+            <button class="nav-item senior-only hidden" data-page="share" onclick="navigate('share')">＋ <span>Share Experience</span></button>
+            <button class="nav-item" data-page="profile" onclick="navigate('profile')">◎ <span>My Profile</span></button>
+        </nav>
+        <div class="sidebar-bottom">
+            <div class="sidebar-note">Your preparation today shapes your opportunities tomorrow.</div>
+            <button class="nav-item logout-link" onclick="logout()">↪ <span>Logout</span></button>
+        </div>
+    </aside>
+
+    <main class="main-area">
+        <header class="topbar">
+            <button class="mobile-menu" onclick="toggleSidebar()">☰</button>
+            <div>
+                <div class="topbar-title">Placement Preparation Tracker</div>
+                <div class="topbar-subtitle">Your placement journey starts here.</div>
+            </div>
+            <div class="profile-menu-wrap">
+                <button class="profile-trigger" onclick="toggleProfileMenu()">
+                    <div class="avatar" id="topAvatar">U</div>
+                    <div class="user-top-info">
+                        <strong id="topName">User</strong>
+                        <small id="topRole">Junior</small>
+                    </div>
+                    <span>⌄</span>
+                </button>
+                <div id="profileDropdown" class="profile-dropdown hidden">
+                    <button onclick="navigate('profile');toggleProfileMenu()">View Profile</button>
+                    <button onclick="showAuth('signup')">Add Account</button>
+                    <button onclick="showAccountSwitcher()">Switch Account</button>
+                    <button onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="content-area" id="pageContent"></div>
+        <footer class="app-footer">Placement Preparation Tracker · Learn. Prepare. Succeed.</footer>
+    </main>
+</div>
+
+<!-- MODAL -->
+<div id="modal" class="modal hidden">
+    <div class="modal-backdrop" onclick="closeModal()"></div>
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeModal()">×</button>
+        <div id="modalContent"></div>
+    </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
